@@ -1,0 +1,20 @@
+.shift{
+    margin: 100px auto;
+}
+.para{
+    font-size: 1.2rem;
+}
+
+.pic{
+    border-radius: 50%;
+    height: 200px;
+}
+.icon:hover{
+    filter: invert(45%) sepia(99%) saturate(318%) hue-rotate(93deg) brightness(100%) contrast(97%);
+}
+.font-light{
+    font-weight: 300;
+}
+.font-bold{
+    font-weight: 700;
+}
