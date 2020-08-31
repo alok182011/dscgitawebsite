@@ -5,3 +5,18 @@
 footer{
     margin-top: -150px;
 }
+
+.anim{
+    width: 450px;
+    height: 450px;
+}
+
+@media (max-width: 767.98px) {
+    .anim{
+        width: 300px;
+        height: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}
