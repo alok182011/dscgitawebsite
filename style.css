@@ -41,7 +41,7 @@ footer{
 }
 
 .card{
-    box-shadow: 1px 1px 1px 1px black;
+    box-shadow: 1px 1px 5px 0px black;
 }
 
 @media (max-width: 767.98px) {
