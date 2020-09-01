@@ -1,8 +1,13 @@
+body{
+    font-family: 'Poppins', sans-serif;
+
+}
 .shift{
     margin: 100px auto;
 }
 .para{
     font-size: 1.2rem;
+    font-weight: 400 !important;
 }
 
 .pic{
