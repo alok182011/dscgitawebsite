@@ -33,6 +33,9 @@ body{
 }
 .desc{
 
+        font-size: 0.8rem;
+        margin-top: -12px;
+
 }
 @media(min-width:768px){
     .pic{
