@@ -31,6 +31,9 @@ body{
     height: 200px ;
     width:auto ;
 }
+.desc{
+
+}
 @media(min-width:768px){
     .pic{
         height: 200px;
@@ -41,6 +44,10 @@ body{
     .para2{
         font-size: 1.2rem;
         width: 80%;
+    }
+    .desc{
+        font-size: 0.8rem;
+        margin-top: -12px;
     }
 }
 @media(min-width:992px){
