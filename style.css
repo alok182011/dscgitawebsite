@@ -17,6 +17,11 @@ body{
     margin-top: 20px;
 }
 
+#teamPic{
+    width: 350px;
+    height: 350px;
+}
+
 footer{
     margin-top: -150px;
 }
