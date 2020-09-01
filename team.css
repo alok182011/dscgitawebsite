@@ -7,7 +7,7 @@
 
 .pic{
     border-radius: 50%;
-    height: 200px;
+    height: 250px;
 }
 .icon:hover{
     filter: invert(45%) sepia(99%) saturate(318%) hue-rotate(93deg) brightness(100%) contrast(97%);
@@ -17,4 +17,14 @@
 }
 .font-bold{
     font-weight: 700;
+}
+@media(min-width:768px){
+    .pic{
+        height: 200px;
+    }
+}
+@media(min-width:992px){
+    .pic{
+        height: 200px;
+    }
 }
