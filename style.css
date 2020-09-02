@@ -45,6 +45,11 @@ footer{
 }
 
 @media (max-width: 767.98px) {
+
+    .textAlter{
+        text-align: center;
+    }
+    
     .anim{
         width: 300px;
         height: 300px;
