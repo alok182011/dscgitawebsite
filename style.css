@@ -6,6 +6,20 @@ body{
     width: 80px;
 }
 
+.eventCard{
+    background: #ffffff;
+    box-shadow: 8px 4px 20px rgba(0,0,0,0.05);
+    border-radius: 4px;
+}
+
+.teamCard{
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    box-shadow: 80x 4px 20px rgba(0,0,0,0.5);
+    border-radius: 4px;
+}
+
 #intro{
     margin-top: auto;
     margin-bottom: auto;
@@ -40,9 +54,6 @@ footer{
     margin-top: -100px;
 }
 
-.card{
-    box-shadow: 1px 1px 5px 0px black;
-}
 
 @media (max-width: 767.98px) {
 
