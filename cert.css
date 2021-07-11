@@ -1,0 +1,40 @@
+.container-cert{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 100px 70px 100px;
+}
+.certificate-image{
+    border: 1px solid black;
+    width: 70%;
+}
+.certDownloadDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 30px;
+}
+.downloadBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 5px;
+    padding: 10px 25px;
+    cursor: pointer;
+    border: none;
+    background-color: #4CC713;
+    color: white;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-align: center;
+    text-indent: 15px;
+}
+.downloadBtn:hover{
+    
+}
