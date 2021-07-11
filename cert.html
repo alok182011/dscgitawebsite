@@ -42,7 +42,6 @@
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/script.min.js"></script>
-        <script src="FileSaver.min.js"></script>
         <script>
             $(document).ready(function (){
                 const queryString = window.location.search;
@@ -88,7 +87,7 @@
                 })
                 $(document).on('click','#downloadPdf',function(){
                     let pdfUrl = $('#downloadPdf').attr('src');
-                    console.log("Downloading PDF: " + file_url);
+                    console.log("Downloading PDF: " + pdfUrl);
                     window.open(pdfUrl, '_blank');
                 })
             })

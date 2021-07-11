@@ -36,5 +36,16 @@
     text-indent: 15px;
 }
 .downloadBtn:hover{
-    
+
+}
+@media(max-width:768px){
+    .container-cert{
+        margin: 100px 20px 50px 20px;
+    }
+    .certificate-image{
+        width: 100%;
+    }
+    .certDownloadDiv{
+        flex-direction: column;
+    }
 }
