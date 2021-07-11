@@ -38,32 +38,11 @@
             <button id="downloadPng" class="downloadBtn"><img src="./download.png" alt=""> Download as PNG</button>
         </div>
     </div>
-
-    <img src="assets/img/wave.svg">
-    <footer id="contact" class="footer bg-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 my-auto h-100 text-center text-lg-left">
-                     <lottie-player class="anim" src="assets/img/contact.json" background="transparent"  speed="1" loop autoplay></lottie-player>
-                </div>
-                <div class="col-lg-6 my-auto h-100 text-center text-lg-right">
-                    <h1>Find Us...</h1>
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item"><a href="https://www.linkedin.com/company/dsc-gita" target="blank"><i class="fa fa-linkedin fa-2x fa-fw"></i></a></li>
-                        <li class="list-inline-item"><a href="https://twitter.com/DscGita" target="blank"><i class="fa fa-twitter fa-2x fa-fw"></i></a></li>
-                        <li class="list-inline-item"><a href="https://github.com/dscgita" target="blank"><i class="fa fa-github fa-2x fa-fw"></i></a></li>
-                        <li class="list-inline-item"><a href="mailto:dscgitabbsr@gmail.com" target="blank"><i class="fa fa-envelope fa-2x fa-fw"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <p class="text-center mt-5">Made with ❤️ by Team DSC GITA</p>
-        </div>
-    </footer>
-    
     
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/script.min.js"></script>
+        <script src="FileSaver.min.js"></script>
         <script>
             $(document).ready(function (){
                 const queryString = window.location.search;
@@ -71,10 +50,79 @@
                 const urlParams = new URLSearchParams(queryString);
                 if(urlParams.has('id')){
                     const certId = urlParams.get('id');
-                    const imgPath = `https://raw.githubusercontent.com/alok182011/dscgitawebsite/master/assets/cert/${certId}.png`
+                    const imgPath = `https://raw.githubusercontent.com/alok182011/dscgitawebsite/master/assets/cert/img/${certId}.png`
                     $("#certificate-image").attr("src",imgPath);
+                    $("#downloadPng").attr("src",imgPath);
+                    $("#downloadPdf").attr("src",certId);
                     console.log(imgPath)
                 }
+                function downloadBlob(blob, filename) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename || 'download';
+                    return a;
+                }
+                function downloadGiphy(file_url) {
+                    fetch(file_url)
+                    .then(response => response.blob())
+                    .then(blob => {
+                            // Create a new FileReader innstance
+                            const reader = new FileReader();
+                            // Add a listener to handle successful reading of the blob
+                            reader.addEventListener('load', () => {
+                                const downloadLink = downloadBlob(blob, file_url.split('/').pop());
+                                document.body.appendChild(downloadLink);
+                                downloadLink.click()
+                                document.body.removeChild(downloadLink);
+                            });
+                    // Start reading the content of the blob
+                    // The result should be a base64 data URL
+                    reader.readAsDataURL(blob);
+                });
+                }
+                $(document).on('click','#downloadPng',function(){
+                    const file_url = $('#downloadPng').attr('src');
+                    console.log("Downloading: " + file_url);
+                    downloadGiphy(file_url);
+                })
+                $(document).on('click','#downloadPdf',function(){
+                    const fileName = $('#downloadPdf').attr('src');
+                    const fileURL = `https://github.com/alok182011/dscgitawebsite/tree/master/assets/cert/pdfs/${fileName}.pdf`;
+                    console.log("Downloading PDF: " + fileURL);
+                    /* Helper function */
+                    function download_file(fileURL, fileName) {
+                        // for non-IE
+                        if (!window.ActiveXObject) {
+                            var save = document.createElement('a');
+                            save.href = fileURL;
+                            save.target = '_blank';
+                            var filename = fileURL.substring(fileURL.lastIndexOf('/')+1);
+                            save.download = fileName || filename;
+                            if ( navigator.userAgent.toLowerCase().match(/(ipad|iphone|safari)/) && navigator.userAgent.search("Chrome") < 0) {
+                                    document.location = save.href; 
+                    // window event not working here
+                                }else{
+                                    var evt = new MouseEvent('click', {
+                                        'view': window,
+                                        'bubbles': true,
+                                        'cancelable': false
+                                    });
+                                    save.dispatchEvent(evt);
+                                    (window.URL || window.webkitURL).revokeObjectURL(save.href);
+                                }	
+                        }
+
+                        // for IE < 11
+                        else if ( !! window.ActiveXObject && document.execCommand)     {
+                            var _window = window.open(fileURL, '_blank');
+                            _window.document.close();
+                            _window.document.execCommand('SaveAs', true, fileName || fileURL)
+                            _window.close();
+                        }
+                    }
+                    download_file(fileURL, fileName); 
+                })
             })
         </script>
     </body>
