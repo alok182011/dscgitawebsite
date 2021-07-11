@@ -33,6 +33,7 @@
     <div class="container-cert">
 
         <img id="certificate-image" alt="" class="certificate-image">
+        <div id="error" class="error"></div>
         <div class="certDownloadDiv">
             <button id="downloadPdf" class="downloadBtn"><img src="./download.png" alt=""> Download as PDF</button>
             <button id="downloadPng" class="downloadBtn"><img src="./download.png" alt=""> Download as PNG</button>
@@ -43,17 +44,34 @@
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/js/script.min.js"></script>
         <script>
-            $(document).ready(function (){
+            $(document).ready(async function (){
+                function error(str){
+                    $('.certDownloadDiv').css('display','none');
+                    var htm = `<h4>${str}</h4>`
+                    $("#error").append(htm);
+                }
                 const queryString = window.location.search;
                 console.log(queryString);
                 const urlParams = new URLSearchParams(queryString);
                 if(urlParams.has('id')){
                     const certId = urlParams.get('id');
                     const imgPath = `https://raw.githubusercontent.com/alok182011/dscgitawebsite/master/assets/cert/img/${certId}.png`
-                    $("#certificate-image").attr("src",imgPath);
-                    $("#downloadPng").attr("src",imgPath);
-                    $("#downloadPdf").attr("src",`https://github.com/alok182011/dscgitawebsite/raw/master/assets/cert/pdfs/${certId}.pdf`);
-                    console.log(imgPath)
+                    console.log("start")
+                    await fetch(imgPath)
+                        .then(response => {
+                            if(response.status === 404){
+                                error("No certificate found of this ID.")
+                            }else{
+                                $("#certificate-image").attr("src",imgPath);
+                                $("#downloadPng").attr("src",imgPath);
+                                $("#downloadPdf").attr("src",`https://github.com/alok182011/dscgitawebsite/raw/master/assets/cert/pdfs/${certId}.pdf`);
+                            }
+                        })
+                    console.log("finish")
+                    
+                }
+                else{
+                    error("Something Went Wrong! Please check URL.");
                 }
                 function downloadBlob(blob, filename) {
                     const url = URL.createObjectURL(blob);
@@ -82,12 +100,10 @@
                 }
                 $(document).on('click','#downloadPng',function(){
                     const file_url = $('#downloadPng').attr('src');
-                    console.log("Downloading: " + file_url);
                     downloadGiphy(file_url);
                 })
                 $(document).on('click','#downloadPdf',function(){
                     let pdfUrl = $('#downloadPdf').attr('src');
-                    console.log("Downloading PDF: " + pdfUrl);
                     window.open(pdfUrl, '_blank');
                 })
             })
