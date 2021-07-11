@@ -53,7 +53,7 @@
                     const imgPath = `https://raw.githubusercontent.com/alok182011/dscgitawebsite/master/assets/cert/img/${certId}.png`
                     $("#certificate-image").attr("src",imgPath);
                     $("#downloadPng").attr("src",imgPath);
-                    $("#downloadPdf").attr("src",certId);
+                    $("#downloadPdf").attr("src",`https://github.com/alok182011/dscgitawebsite/raw/master/assets/cert/pdfs/${certId}.pdf`);
                     console.log(imgPath)
                 }
                 function downloadBlob(blob, filename) {
@@ -87,41 +87,9 @@
                     downloadGiphy(file_url);
                 })
                 $(document).on('click','#downloadPdf',function(){
-                    const fileName = $('#downloadPdf').attr('src');
-                    const fileURL = `https://github.com/alok182011/dscgitawebsite/tree/master/assets/cert/pdfs/${fileName}.pdf`;
-                    console.log("Downloading PDF: " + fileURL);
-                    /* Helper function */
-                    function download_file(fileURL, fileName) {
-                        // for non-IE
-                        if (!window.ActiveXObject) {
-                            var save = document.createElement('a');
-                            save.href = fileURL;
-                            save.target = '_blank';
-                            var filename = fileURL.substring(fileURL.lastIndexOf('/')+1);
-                            save.download = fileName || filename;
-                            if ( navigator.userAgent.toLowerCase().match(/(ipad|iphone|safari)/) && navigator.userAgent.search("Chrome") < 0) {
-                                    document.location = save.href; 
-                    // window event not working here
-                                }else{
-                                    var evt = new MouseEvent('click', {
-                                        'view': window,
-                                        'bubbles': true,
-                                        'cancelable': false
-                                    });
-                                    save.dispatchEvent(evt);
-                                    (window.URL || window.webkitURL).revokeObjectURL(save.href);
-                                }	
-                        }
-
-                        // for IE < 11
-                        else if ( !! window.ActiveXObject && document.execCommand)     {
-                            var _window = window.open(fileURL, '_blank');
-                            _window.document.close();
-                            _window.document.execCommand('SaveAs', true, fileName || fileURL)
-                            _window.close();
-                        }
-                    }
-                    download_file(fileURL, fileName); 
+                    let pdfUrl = $('#downloadPdf').attr('src');
+                    console.log("Downloading PDF: " + file_url);
+                    window.open(pdfUrl, '_blank');
                 })
             })
         </script>
