@@ -69,8 +69,8 @@
                 const queryString = window.location.search;
                 console.log(queryString);
                 const urlParams = new URLSearchParams(queryString);
-                if(urlParams.has('c')){
-                    const certId = urlParams.get('c');
+                if(urlParams.has('id')){
+                    const certId = urlParams.get('id');
                     const imgPath = `https://raw.githubusercontent.com/alok182011/dscgitawebsite/master/assets/cert/${certId}.png`
                     $("#certificate-image").attr("src",imgPath);
                     console.log(imgPath)
